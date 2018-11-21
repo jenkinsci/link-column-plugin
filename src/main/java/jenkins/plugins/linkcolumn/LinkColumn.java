@@ -23,6 +23,7 @@
  */
 package jenkins.plugins.linkcolumn;
 
+import hudson.EnvVars;
 import jenkins.model.Jenkins;
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -72,12 +73,27 @@ public class LinkColumn extends ListViewColumn {
     private String tokenize(String value, Job<?, ?> job) {
         Run<?, ?> lastBuild = job.getLastBuild();
         String rootUrl = Jenkins.getInstance().getRootUrl();
-        value = value.replace("${BUILD_URL}", lastBuild != null ? rootUrl + job.getShortUrl() + String.valueOf(lastBuild.getNumber()) + "/" : "null");
-        value = value.replace("${BUILD_NUMBER}", lastBuild != null ? String.valueOf(lastBuild.getNumber()) : "null");
-        value = value.replace("${BUILD_STATUS}", lastBuild != null && lastBuild.getResult() != null ? lastBuild.getResult().toString() : "null");
-        value = value.replace("${JOB_NAME}", job.getName());
-        value = value.replace("${JOB_URL}", rootUrl + job.getShortUrl());
-        return value;
+        String jobName = job.getName();
+        String jobUrl = rootUrl + job.getShortUrl();
+        
+        String buildNumber = "null";
+        String buildUrl = "null";
+        String buildStatus = "null";
+        if (lastBuild != null) {
+            buildNumber = String.valueOf(lastBuild.getNumber());
+            buildUrl = rootUrl + job.getShortUrl() + buildNumber + "/";
+            buildStatus = lastBuild.getResult() != null ? lastBuild.getResult().toString() : "null";
+        }
+        
+        EnvVars envVars = new EnvVars();
+        envVars.put("ROOT_URL", rootUrl);
+        envVars.put("JOB_NAME", jobName);
+        envVars.put("JOB_URL", jobUrl);
+        envVars.put("BUILD_NUMBER", buildNumber);
+        envVars.put("BUILD_URL", buildUrl);
+        envVars.put("BUILD_STATUS", buildStatus);
+
+        return envVars.expand(value);
     }
 
     @Extension

@@ -10,7 +10,7 @@
     <packaging>hpi</packaging>
     <version>1.0</version>
     <name>Link Column Plugin</name>
-    <!--<url>http://wiki.jenkins-ci.org/display/JENKINS/Link+Column+Plugin</url>-->
+    <url>https://wiki.jenkins.io/display/JENKINS/Link+Column+Plugin</url>
 
     <properties>
         <jenkins.version>1.607</jenkins.version>
@@ -20,6 +20,7 @@
         <developer>
             <id>KarlGong</id>
             <name>Karl Gong</name>
+            <email>karl.gong@outlook.com</email>
         </developer>
     </developers>
 
@@ -32,9 +33,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/KarlGong/jenkins-link-column-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:KarlGong/jenkins-link-column-plugin.git</developerConnection>
-        <url>https://github.com/KarlGong/jenkins-link-column-plugin</url>
+        <connection>scm:git:git://github.com/jenkinsci/link-column-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/link-column-plugin.git</developerConnection>
+        <url>https://github.com/jenkinsci/link-column-plugin</url>
         <tag>HEAD</tag>
     </scm>
 
