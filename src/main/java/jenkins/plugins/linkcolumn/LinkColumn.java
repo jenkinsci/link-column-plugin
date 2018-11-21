@@ -62,11 +62,11 @@ public class LinkColumn extends ListViewColumn {
     }
 
 
-    public String getLinkNameWithToken(Job<?, ?> job) {
+    public String getTokenizedLinkName(Job<?, ?> job) {
         return tokenize(linkName, job);
     }
 
-    public String getLinkWithToken(Job<?, ?> job) {
+    public String getTokenizedLink(Job<?, ?> job) {
         return tokenize(link, job);
     }
 
