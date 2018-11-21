@@ -25,6 +25,8 @@ THE SOFTWARE.
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt">
     <td>
-        <a href="${it.getTokenizedLink(job)}" target="${it.getLinkTarget()}">${it.getTokenizedLinkName(job)}</a>
+        <a href="${it.getTokenizedLinkUrl(job)}" target="${it.getLinkTarget()}">
+            ${it.getTokenizedLinkText(job)}
+        </a>
     </td>
 </j:jelly>

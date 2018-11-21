@@ -37,16 +37,16 @@ import hudson.views.ListViewColumnDescriptor;
 public class LinkColumn extends ListViewColumn {
 
     private String columnName;
-    private String linkName;
-    private String link;
+    private String linkText;
+    private String linkUrl;
     private boolean openNewWindow;
 
     @DataBoundConstructor
-    public LinkColumn(String columnName, String linkName, String link, boolean openNewWindow) {
+    public LinkColumn(String columnName, String linkText, String linkUrl, boolean openNewWindow) {
         super();
         this.columnName = columnName;
-        this.linkName = linkName;
-        this.link = link;
+        this.linkText = linkText;
+        this.linkUrl = linkUrl;
         this.openNewWindow = openNewWindow;
     }
 
@@ -55,24 +55,24 @@ public class LinkColumn extends ListViewColumn {
         return columnName;
     }
 
-    public String getLinkName() {
-        return linkName;
+    public String getLinkText() {
+        return linkText;
     }
 
-    public String getLink() {
-        return link;
+    public String getLinkUrl() {
+        return linkUrl;
     }
     
     public boolean isOpenNewWindow() {
         return openNewWindow;
     }
 
-    public String getTokenizedLinkName(Job<?, ?> job) {
-        return tokenize(linkName, job);
+    public String getTokenizedLinkText(Job<?, ?> job) {
+        return tokenize(linkText, job);
     }
 
-    public String getTokenizedLink(Job<?, ?> job) {
-        return tokenize(link, job);
+    public String getTokenizedLinkUrl(Job<?, ?> job) {
+        return tokenize(linkUrl, job);
     }
 
     public String getLinkTarget() {
