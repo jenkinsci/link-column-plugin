@@ -39,13 +39,15 @@ public class LinkColumn extends ListViewColumn {
     private String columnName;
     private String linkName;
     private String link;
+    private boolean openNewWindow;
 
     @DataBoundConstructor
-    public LinkColumn(String columnName, String linkName, String link) {
+    public LinkColumn(String columnName, String linkName, String link, boolean openNewWindow) {
         super();
         this.columnName = columnName;
         this.linkName = linkName;
         this.link = link;
+        this.openNewWindow = openNewWindow;
     }
 
 
@@ -60,7 +62,10 @@ public class LinkColumn extends ListViewColumn {
     public String getLink() {
         return link;
     }
-
+    
+    public boolean isOpenNewWindow() {
+        return openNewWindow;
+    }
 
     public String getTokenizedLinkName(Job<?, ?> job) {
         return tokenize(linkName, job);
@@ -68,6 +73,10 @@ public class LinkColumn extends ListViewColumn {
 
     public String getTokenizedLink(Job<?, ?> job) {
         return tokenize(link, job);
+    }
+
+    public String getLinkTarget() {
+        return this.openNewWindow ? "_blank": "_self";
     }
 
     private String tokenize(String value, Job<?, ?> job) {
