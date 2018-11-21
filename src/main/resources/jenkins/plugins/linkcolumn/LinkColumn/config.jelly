@@ -28,11 +28,14 @@ THE SOFTWARE.
         <f:entry title="Column Name" field="columnName">
             <f:textbox default="${instance.getColumnName()}"/>
         </f:entry>
-        <f:entry title="Link Name" field="linkName">
-            <f:textbox default="${instance.getLinkName()}"/>
+        <f:entry title="Link Text" field="linkText">
+            <f:textbox default="${instance.getLinkText()}"/>
         </f:entry>
-        <f:entry title="Link" field="link">
-            <f:textbox default="${instance.getLink()}"/>
+        <f:entry title="Link Url" field="linkUrl">
+            <f:textbox default="${instance.getLinkUrl()}"/>
+        </f:entry>
+        <f:entry title="Open New Window" field="openNewWindow">
+            <f:checkbox default="${instance.isOpenNewWindow()}"/>
         </f:entry>
     </f:block>
 </j:jelly>
