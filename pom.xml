@@ -8,7 +8,7 @@
 
     <artifactId>link-column</artifactId>
     <packaging>hpi</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Link Column Plugin</name>
     <url>https://wiki.jenkins.io/display/JENKINS/Link+Column+Plugin</url>
 
@@ -36,7 +36,7 @@
         <connection>scm:git:https://github.com/jenkinsci/link-column-plugin.git</connection>
         <developerConnection>scm:git:https://github.com/jenkinsci/link-column-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/link-column-plugin</url>
-        <tag>HEAD</tag>
+        <tag>link-column-1.0</tag>
     </scm>
 
     <dependencies>
