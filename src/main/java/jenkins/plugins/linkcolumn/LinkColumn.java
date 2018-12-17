@@ -24,6 +24,7 @@
 package jenkins.plugins.linkcolumn;
 
 import hudson.EnvVars;
+import hudson.model.Result;
 import jenkins.model.Jenkins;
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -62,7 +63,7 @@ public class LinkColumn extends ListViewColumn {
     public String getLinkUrl() {
         return linkUrl;
     }
-    
+
     public boolean isOpenNewWindow() {
         return openNewWindow;
     }
@@ -76,24 +77,35 @@ public class LinkColumn extends ListViewColumn {
     }
 
     public String getLinkTarget() {
-        return this.openNewWindow ? "_blank": "_self";
+        return this.openNewWindow ? "_blank" : "_self";
     }
 
     private String tokenize(String value, Job<?, ?> job) {
-        Run<?, ?> lastBuild = job.getLastBuild();
-        String rootUrl = Jenkins.getInstance().getRootUrl();
-        String jobName = job.getName();
-        String jobUrl = rootUrl + job.getShortUrl();
-        
+        String rootUrl = "null";
+        String jobName = "null";
+        String jobUrl = "null";
         String buildNumber = "null";
         String buildUrl = "null";
         String buildStatus = "null";
-        if (lastBuild != null) {
-            buildNumber = String.valueOf(lastBuild.getNumber());
-            buildUrl = rootUrl + job.getShortUrl() + buildNumber + "/";
-            buildStatus = lastBuild.getResult() != null ? lastBuild.getResult().toString() : "null";
+
+        Jenkins instance = Jenkins.getInstance();
+        if (instance != null) {
+            rootUrl = instance.getRootUrl();
+            jobName = job.getName();
+            jobUrl = rootUrl + job.getShortUrl();
+
+            Run<?, ?> lastBuild = job.getLastBuild();
+            if (lastBuild != null) {
+                buildNumber = String.valueOf(lastBuild.getNumber());
+                buildUrl = jobUrl + buildNumber + "/";
+                
+                Result result = lastBuild.getResult();
+                if (result != null) {
+                    buildStatus = result.toString();
+                }
+            }
         }
-        
+
         EnvVars envVars = new EnvVars();
         envVars.put("ROOT_URL", rootUrl);
         envVars.put("JOB_NAME", jobName);
